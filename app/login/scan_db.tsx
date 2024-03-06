@@ -21,6 +21,11 @@ export default function ScanDB(props: any) {
     }
   }, [props.Login])
 
+  AWS.config.update({
+    accessKeyId: '',
+    secretAccessKey: '',
+    region: '' 
+  });
 
   const dynamo = new AWS.DynamoDB.DocumentClient();
 

@@ -11,17 +11,18 @@ export default function SendMail(props: any) {
         console.log(props.ToArray)
         console.log("====================")
         console.log("Send email initiated.")
+        console.log(props.Message)
         sendEmail()
         console.log("====================")
     }
   }, [props.Send])
 
-  // const emailParams = {
-  //   from: 'Sender Name <jdunntestacct@gmail.com>',
-  //   to: 'jdunn7008@gmail.com,jasongeorgedunn@csus.edu',
-  //   subject: 'Form Submission',
-  //   text: 'test sending'
-  // };
+  const emailParams = {
+    from: 'Sender Name <jdunntestacct@gmail.com>',
+    to: 'jdunn7008@gmail.com,jasongeorgedunn@csus.edu',
+    subject: 'Form Submission',
+    text: 'test sending'
+  };
 
   const buildList = () => {
     console.log(props.ToArray)
@@ -36,20 +37,18 @@ export default function SendMail(props: any) {
       from: 'Sender Name <jdunntestacct@gmail.com>',
       to: send_str,
       subject: 'Form Submission',
-      text: 'test sending'
+      text: props.Message ? props.Message : "No message included."
     }
 
+    // return params
     return params
   }
 
 
   const sendEmail = () => {
-    buildList()
-    emailjs
-    .send('', '', buildList(), {
+    emailjs.send('', '', buildList(), {
       publicKey: '',
-    })
-      .then(
+    }).then(
         () => {
           console.log('SUCCESS!');
           props.setSend(false)

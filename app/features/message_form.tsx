@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 
 import SendMail from './send_mail'
 
@@ -8,6 +8,7 @@ export default function MessageForm(props: any) {
   const [Mapped, setMapped] = useState(false)
   const [ToArray, setToArray] = useState([])
   const [Send, setSend] = useState(false)
+  const [Message, setMessage] = useState('')
 
 
   useEffect(() => {
@@ -54,6 +55,9 @@ export default function MessageForm(props: any) {
     setSend(true)
   }
 
+  const messageHandler = (e: any) => {
+    setMessage(e.target.value)
+  }
 
   return (
     <div className="grid grid-flow-row grid-auto grid-cols-1 gap-12">
@@ -87,11 +91,11 @@ export default function MessageForm(props: any) {
               </span>
             </div>
             <div className="col-span-2">
-              <textarea className="h-[300px] w-[600px] p-[10px] resize-none"/>
+              <textarea className="h-[300px] w-[600px] p-[10px] resize-none" onChange={(e) =>messageHandler(e)}/>
             </div>
         </div>
         <div>
-          <SendMail Send={Send} setSend={setSend} ToArray={ToArray}/>
+          <SendMail Send={Send} setSend={setSend} ToArray={ToArray} Message={Message}/>
         </div>
         <div className="grid grid-rows-1 grid-cols-1 mt-[200px] center">
           <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={sendHandler}>
