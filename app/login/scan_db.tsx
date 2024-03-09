@@ -7,6 +7,13 @@ export default function ScanDB(props: any) {
   var user_found = false
 
   useEffect(() => {
+    if(props.Submit){
+        console.log("Submit passed to scan database.")
+        getDB()
+    }
+  }, [props.Data])
+
+  useEffect(() => {
     if(props.Data){
         console.log(props.Data)
     }
@@ -22,9 +29,9 @@ export default function ScanDB(props: any) {
   }, [props.Login])
 
   AWS.config.update({
-    accessKeyId: '',
-    secretAccessKey: '',
-    region: '' 
+    region: '', 
+    accessKeyId: '', 
+    secretAccessKey: '', 
   });
 
   const dynamo = new AWS.DynamoDB.DocumentClient();
@@ -37,7 +44,7 @@ export default function ScanDB(props: any) {
     props.setUserData(user)
   }
 
-  async function scan(){
+  async function getDB(){
     try {
       console.log('Received event:', JSON.stringify(event, null, 2));
       
@@ -81,8 +88,8 @@ export default function ScanDB(props: any) {
 
   return (
     <div>
-      <button onClick={scan}>Scan DB</button>
-      <p>{response}</p>
+      {/* <button onClick={getDB}>Scan DB</button>
+      <p>{response}</p> */}
     </div>
   );
 }

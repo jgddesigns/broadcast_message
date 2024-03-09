@@ -40,13 +40,12 @@ export default function SendMail(props: any) {
       text: props.Message ? props.Message : "No message included."
     }
 
-    // return params
     return params
   }
 
 
   const sendEmail = () => {
-    emailjs.send('', '', buildList(), {
+    emailjs.send('', '', {}, {
       publicKey: '',
     }).then(
         () => {

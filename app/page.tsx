@@ -8,12 +8,12 @@ import LoginHeader from './features/login_header'
 import SendMail from './features/send_mail'
 
 export default function Home() {
-  const [Clicked, setClicked] = useState(false)
   const [LoggedIn, setLoggedIn] = useState(false)
   const [User, setUser] = useState(null)
   const [SendData, setSendData] = useState(false)
   const [ArrayCleaned, setArrayCleaned] = useState(false)
   const [SendList, setSendList] = useState([])
+  const [TriggerLogout, setTriggerLogout] = useState(false)
 
   useEffect(() => {
     if(LoggedIn){
@@ -76,14 +76,14 @@ export default function Home() {
         <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
           <span>BROADCAST MESSAGE DEMO</span>
         </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
+        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-gray via-gray dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
           <a
             className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
             href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <LoginHeader LoggedIn={LoggedIn} User={User}/>
+            <LoginHeader LoggedIn={LoggedIn} User={User} setTriggerLogout={setTriggerLogout}/>
           </a>
         </div>
       </div>
@@ -100,7 +100,7 @@ export default function Home() {
         <div>
         {!LoggedIn ?           
             <div>
-              <LoginForm setLoggedIn={setLoggedIn} setUser={setUser} setSendList={setSendList}/>
+              <LoginForm setLoggedIn={setLoggedIn} TriggerLogout={TriggerLogout} setUser={setUser} setSendList={setSendList}/>
             </div>
         : <div>
             <div>

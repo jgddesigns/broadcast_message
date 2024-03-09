@@ -65,7 +65,7 @@ export default function MessageForm(props: any) {
             <span className="text-lg">
                 From:
             </span>
-            <textarea className="w-[300px] resize-none" value={props.User["email"]} disabled/>
+            <textarea className="w-[300px] h-[50px] p-[10px] resize-none" value={props.User["email"]} disabled/>
         </div>
 
         <div className="grid grid-flow-row grid-auto grid-cols-1 mt-[50px] w-[800px]" id="send_div">

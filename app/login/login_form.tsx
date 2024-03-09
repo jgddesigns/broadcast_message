@@ -27,6 +27,12 @@ export default function LoginForm(props: any) {
     }
   }, [Login])
 
+  useEffect(() => {
+    if(props.TriggerLogout){
+        logoutHandler()
+    }
+  }, [props.TriggerLogout])
+
   const emailHandler = (value: any) => {
     // console.log(value)
     setEmail(value)
@@ -58,6 +64,13 @@ export default function LoginForm(props: any) {
     console.log(Data[1])
   }
 
+  const logoutHandler = () => {
+    setData([""])
+    setSubmit(false)
+    setLogin(false)
+    props.setLoggedin(false)
+  }
+
 
 
   return (
@@ -68,7 +81,7 @@ export default function LoginForm(props: any) {
                     <span>
                         Email:
                     </span>
-                    <textarea className="w-[300px]" onChange={(e) => emailHandler(e.target.value)}/>
+                    <textarea className="w-[300px] h-[50px] resize-none p-[10px]" onChange={(e) => emailHandler(e.target.value)}/>
                 </div>
 
                 <div className="grid grid-rows-2 grid-cols-2">
@@ -76,7 +89,7 @@ export default function LoginForm(props: any) {
                         Password:
                     </span>
 
-                    <textarea className="w-[300px]" onChange={(e) => passwordHandler(e.target.value)}/>
+                    <textarea className="w-[300px] h-[50px] resize-none p-[10px]" onChange={(e) => passwordHandler(e.target.value)}/>
                 </div>
 
                 <div className="grid grid-rows-2 grid-cols-2">
@@ -91,7 +104,7 @@ export default function LoginForm(props: any) {
             </div>
      
     
-        <ScanDB Data={Data} Login={Login} setLogin={setLogin} setUserData={setUserData} setSendList={props.setSendList}/>
+        <ScanDB Submit={Submit} Data={Data} Login={Login} setLogin={setLogin} setUserData={setUserData} setSendList={props.setSendList}/>
     </div>
   );
 }

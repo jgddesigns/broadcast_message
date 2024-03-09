@@ -20,8 +20,17 @@ export default function LoginHeader(props: any) {
         <div>
             <div>
                 {props.LoggedIn ? 
-                    <div>
-                        Current User: {props.User["name"]} 
+                    <div className="grid grid-rows-2">
+                        <div>
+                            Current User: {props.User["name"]} 
+                        </div>
+                        <div className="grid grid-cols-2">
+                            <div>
+                            </div>
+                            <div>
+                                <span className="text-size-sm text-blue-400 cursor-pointer" onClick={props.setTriggerLogout(true)}>Log Out</span>
+                            </div>
+                        </div>
                     </div>
                 : null}
             </div>
