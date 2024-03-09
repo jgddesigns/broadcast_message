@@ -105,7 +105,7 @@ export default function Home() {
       <div>
         <div>
         {!LoggedIn ?           
-            <div>
+            <div className="mt-[10%]">
               <LoginForm Data={Data} setData={setData} Submit={Submit} setSubmit={setSubmit} Login={Login} setLogin={setLogin} setLoggedIn={setLoggedIn} setUser={setUser} setSendList={setSendList}/>
             </div>
         : <div>

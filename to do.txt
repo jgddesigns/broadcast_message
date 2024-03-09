@@ -1,2 +1,1 @@
-invalid login needs message
-display messages after first entry (delayed do to setstate)
+invalid login needs message (move scandb to homepage)

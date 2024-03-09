@@ -27,9 +27,9 @@ export default function ScanDB(props: any) {
   }, [props.Login])
 
   AWS.config.update({
-    accessKeyId: '',
-    secretAccessKey: '',
-    region: '' 
+    region: '', 
+    accessKeyId: '', 
+    secretAccessKey: '', 
   });
 
   const dynamo = new AWS.DynamoDB.DocumentClient();
@@ -73,7 +73,7 @@ export default function ScanDB(props: any) {
       }
 
       if(!user_found){
-        console.log("Login Unsuccessful")
+        props.setLogin(false)
       }
     }catch(err){
       console.error('Error:', err);

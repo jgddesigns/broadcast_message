@@ -15,6 +15,10 @@ export default function LoginForm(props: any) {
   const [SubmitClass, setSubmitClass] = useState(submit_class[0])
   const login_str = "Login Unsuccessful. Please check the credentials."
 
+  const text_class = ["w-[400px] h-[60px] resize-none p-[10px]", "w-[400px] h-[60px] resize-none p-[10px] outline-none border-2 border-red-400"]
+  const [EmailClass, setEmailClass] = useState(text_class[0])
+  const [PasswordClass, setPasswordClass] = useState(text_class[0])
+
   useEffect(() => {
     if(props.Submit){
         submitProcess()
@@ -23,6 +27,7 @@ export default function LoginForm(props: any) {
 
   useEffect(() => {
     if(!props.Login && props.Submit){
+        console.log("asdf")
         setValidationMessage(login_str)
     }
   }, [props.Login && props.Submit])
@@ -36,6 +41,16 @@ export default function LoginForm(props: any) {
         UserData ? props.setUser(UserData) : console.log("User data broken on LoginForm page.")
     }
   }, [Login])
+
+  useEffect(() => {
+    if(Login){
+        console.log("Login passed to login page.")
+        console.log(UserData)
+        
+        Login ? props.setLoggedIn(Login) : console.log("User login broken on LoginForm page.")
+        UserData ? props.setUser(UserData) : console.log("User data broken on LoginForm page.")
+    }
+  }, [ValidationMessage])
 
   // useEffect(() => {
   //   if(props.Logout){
@@ -69,6 +84,7 @@ export default function LoginForm(props: any) {
       console.log("====================")
       console.log("Email is invalid.")
       console.log("====================")  
+      setEmailClass(text_class[1])
       setValidEmail(false)
       return false
     }
@@ -76,6 +92,7 @@ export default function LoginForm(props: any) {
     console.log("====================")
     console.log("Email confirmed as valid.")
     console.log("====================")  
+    setEmailClass(text_class[0])
     setValidEmail(true)
     checkValidity(true, ValidPassword)
     return true
@@ -83,43 +100,47 @@ export default function LoginForm(props: any) {
 
   const validatePassword = (value: any) => {
     var format = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/
-    var chars = 1
+    var chars = 0
     var i = 1
-    var chars_str = "\n\n" + "Password needs at least 2 special characters."
-    var len_str = "\n\n" + "Password needs at least 8 characters."
+    var chars_str = "\n\nPassword needs at least 2 special characters."
+    var len_str = "\n\nPassword needs at least 8 characters."
+    var valid_str = ValidationMessage
 
     setValidationMessage(ValidationMessage.replace(login_str, ""))
 
-    while(chars < 2 && i < value.length-1){
+    while(chars < 2 && i < value.length){
       format.test(value[i]) ? chars++ : null
-      console.log(chars)
       i++
     }
 
     if(chars < 2){
       console.log("====================")
       console.log("Password needs at least 2 special characters.")
-      !ValidationMessage.includes(chars_str) ? setValidationMessage(ValidationMessage + chars_str) : null
+      console.log(chars)
+      !valid_str.includes(chars_str) ? valid_str = valid_str + chars_str : null
       console.log("====================")
     }else{
-      setValidationMessage(ValidationMessage.replace(chars_str, ""))
+      valid_str = valid_str.replace(chars_str, "")
     }
 
     if(value.length < 8){
       console.log("====================")
-      !ValidationMessage.includes(len_str) ? setValidationMessage(ValidationMessage + len_str) : null
+      !valid_str.includes(len_str) ? valid_str = valid_str + len_str : null
       console.log("Password needs at least 8 characters.")
       console.log("====================")   
     }else{
-      setValidationMessage(ValidationMessage.replace(len_str, ""))
+      valid_str = valid_str.replace(len_str, "")
     }
 
     if((chars < 2) || (value.length < 8)){
+      console.log("valid string -- " + valid_str)
+      console.log("message -- " + ValidationMessage)
+      setValidationMessage(valid_str)
       console.log("====================")
       console.log("Password is invalid.")
-      console.log("====================")  
+      console.log("====================")
+      setPasswordClass(text_class[1])  
       setValidPassword(false)
-      console.log(ValidEmail)
       return false
     }
 
@@ -127,6 +148,7 @@ export default function LoginForm(props: any) {
     console.log("Password confirmed as valid.")
     console.log("====================")  
     setValidationMessage("")
+    setPasswordClass(text_class[0])
     setValidPassword(true)
     checkValidity(ValidEmail, true)
     return true
@@ -169,7 +191,7 @@ export default function LoginForm(props: any) {
               <span>
                   Email:
               </span>
-              <textarea className="w-[400px] h-[60px] resize-none p-[10px]" onChange={(e) => emailHandler(e.target.value)}/>
+              <textarea className={EmailClass} onChange={(e) => emailHandler(e.target.value)}/>
           </div>
 
           <div className="grid grid-rows-2 grid-cols-2">
@@ -177,7 +199,7 @@ export default function LoginForm(props: any) {
                   Password:
               </span>
 
-              <textarea className="w-[400px] h-[60px] resize-none p-[10px]" onChange={(e) => passwordHandler(e.target.value)}/>
+              <textarea className={PasswordClass} onChange={(e) => passwordHandler(e.target.value)}/>
           </div>
           
           <div className="text-red-500"> 
@@ -194,7 +216,7 @@ export default function LoginForm(props: any) {
           </div>
         </div>
      
-        <ScanDB Submit={props.Submit} Data={props.Data} Login={Login} setLogin={setLogin} setUserData={setUserData} setSendList={props.setSendList}/>
+        <ScanDB Submit={props.Submit} Data={props.Data} Login={props.Login} setLogin={props.setLogin} setUserData={setUserData} setSendList={props.setSendList}/>
     </div>
   );
 }
