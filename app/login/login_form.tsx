@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react'
-import Button from 'react'
+import DOMPurify from 'dompurify'
 import ScanDB from './scan_db'
 
 export default function LoginForm(props: any) {
@@ -74,7 +74,7 @@ export default function LoginForm(props: any) {
 
   const validateEmail = (value: any) => {
     const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    var email_str = "\n\n" + "Email is invalid."
+    var email_str = "<div>Email is invalid.</div>"
 
     setValidationMessage(ValidationMessage.replace(login_str, ""))
 
@@ -102,8 +102,8 @@ export default function LoginForm(props: any) {
     var format = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/
     var chars = 0
     var i = 1
-    var chars_str = "\n\nPassword needs at least 2 special characters."
-    var len_str = "\n\nPassword needs at least 8 characters."
+    var chars_str = "<div>Password needs at least 2 special characters.</div>"
+    var len_str = "<div>Password needs at least 8 characters.</div"
     var valid_str = ValidationMessage
 
     setValidationMessage(ValidationMessage.replace(login_str, ""))
@@ -135,7 +135,7 @@ export default function LoginForm(props: any) {
     if((chars < 2) || (value.length < 8)){
       console.log("valid string -- " + valid_str)
       console.log("message -- " + ValidationMessage)
-      setValidationMessage(valid_str)
+      setValidationMessage(DOMPurify.sanitize(valid_str))
       console.log("====================")
       console.log("Password is invalid.")
       console.log("====================")
@@ -202,10 +202,8 @@ export default function LoginForm(props: any) {
               <textarea className={PasswordClass} onChange={(e) => passwordHandler(e.target.value)}/>
           </div>
           
-          <div className="text-red-500"> 
-            {ValidationMessage}
-          </div> 
-
+          <div className="text-red-500" dangerouslySetInnerHTML={{ __html: ValidationMessage }}/> 
+ 
           <div className="grid grid-rows-2 grid-cols-2">
               <span>
               </span>
