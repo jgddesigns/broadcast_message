@@ -3,8 +3,6 @@ import emailjs from '@emailjs/browser';
 
 
 export default function SendMail(props: any) {
-  const [Message, setMessage] = useState('')
-  const [EmailParams, setEmailParams] = useState({})
 
   useEffect(() => {
     if(props.Send){
@@ -17,12 +15,13 @@ export default function SendMail(props: any) {
     }
   }, [props.Send])
 
-  const emailParams = {
-    from: 'Sender Name <jdunntestacct@gmail.com>',
-    to: 'jdunn7008@gmail.com,jasongeorgedunn@csus.edu',
-    subject: 'Form Submission',
-    text: 'test sending'
-  };
+  //test data
+  // const emailParams = {
+  //   from: 'Sender Name <jdunntestacct@gmail.com>',
+  //   to: 'jdunn7008@gmail.com,jasongeorgedunn@csus.edu',
+  //   subject: 'Form Submission',
+  //   text: 'test sending'
+  // };
 
   const buildList = () => {
     console.log(props.ToArray)
@@ -31,7 +30,10 @@ export default function SendMail(props: any) {
       i < props.ToArray.length-1 ? send_str = send_str + props.ToArray[i] + "," : send_str = send_str + props.ToArray[i]
     }
 
+    console.log("====================")
+    console.log("Email message content:")
     console.log(send_str)
+    console.log("====================")
 
     var params = {
       from: 'Sender Name <jdunntestacct@gmail.com>',
@@ -43,9 +45,8 @@ export default function SendMail(props: any) {
     return params
   }
 
-
   const sendEmail = () => {
-    emailjs.send('', '', {}, {
+    emailjs.send('', '', buildList(), {
       publicKey: '',
     }).then(
         () => {

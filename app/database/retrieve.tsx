@@ -5,12 +5,10 @@ export default function RetrieveAWS(props: any) {
   const [response, setResponse] = useState('');
 
   
-
-  // Create an instance of the Lambda service object
   const dynamo = new AWS.DynamoDB.DocumentClient();
 
-  // Function to invoke the Lambda function
   async function insert(){
+
     try {
       console.log('Received event:', JSON.stringify(event, null, 2));
       
@@ -22,22 +20,20 @@ export default function RetrieveAWS(props: any) {
         },
       };
     
-      
       await dynamo.scan(params).promise();
       
       return {
           statusCode: 200,
           body: JSON.stringify('Data inserted successfully')
       };
-  } catch (err) {
-      console.error('Error:', err);
-      return {
-          statusCode: 500,
-          body: JSON.stringify('An error occurred')
-      };
-  }
-
-
+    } catch (err) {
+        console.error('Error:', err);
+        return {
+            statusCode: 500,
+            body: JSON.stringify('An error occurred')
+        };
+    }
+    
   };
 
   return (

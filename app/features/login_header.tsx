@@ -1,11 +1,6 @@
-import Image from "next/image";
-import {useState, useEffect} from 'react';
-
-
+import {useEffect} from 'react';
 
 export default function LoginHeader(props: any) {
-    const [LoggedIn, setLoggedIn] = useState(false);
-    const [User, setUser] = useState([]);
 
     useEffect(() => {
         if(props.LoggedIn){
@@ -16,23 +11,28 @@ export default function LoginHeader(props: any) {
         }
     }, [props.LoggedIn])
 
+    const logoutHandler = (e: any) => {
+        e.preventDefault()
+        props.setTriggerLogout(true)
+    }
+
     return (
         <div>
-            <div>
+            <div className="text-xl cursor-default">
                 {props.LoggedIn ? 
-                    <div className="grid grid-rows-2">
+                    <div className="grid grid-cols-2">
                         <div>
                             Current User: {props.User["name"]} 
                         </div>
-                        <div className="grid grid-cols-2">
-                            <div>
-                            </div>
-                            <div>
-                                <span className="text-size-sm text-blue-400 cursor-pointer" onClick={props.setTriggerLogout(true)}>Log Out</span>
-                            </div>
+                        <div>
+                            <button className="text-blue-400 cursor-pointer ml-[32px]" onClick={e => logoutHandler(e)}>Log Out</button>
                         </div>
                     </div>
-                : null}
+                : 
+                    <div>
+                        <span className="italic">Logged Out</span>
+                    </div>
+                }
             </div>
         </div> 
     );

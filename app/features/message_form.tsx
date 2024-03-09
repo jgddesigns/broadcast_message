@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react'
 import SendMail from './send_mail'
 
 export default function MessageForm(props: any) {
-  const [Loaded, setLoaded] = useState(false)
   const [SendMap, setSendMap] = useState(Object)
   const [Mapped, setMapped] = useState(false)
   const [ToArray, setToArray] = useState([])
@@ -60,16 +59,16 @@ export default function MessageForm(props: any) {
   }
 
   return (
-    <div className="grid grid-flow-row grid-auto grid-cols-1 gap-12">
-        <div className="grid grid-rows-1 grid-cols-2 mt-[70px] w-[400px]">
-            <span className="text-lg">
+    <div className="grid grid-flow-row grid-auto grid-cols-1 gap-12 text-xl">
+        <div className="grid grid-rows-1 grid-cols-2 mt-[150px] w-[400px]">
+            <span>
                 From:
             </span>
             <textarea className="w-[300px] h-[50px] p-[10px] resize-none" value={props.User["email"]} disabled/>
         </div>
 
-        <div className="grid grid-flow-row grid-auto grid-cols-1 mt-[50px] w-[800px]" id="send_div">
-          <span className="text-lg">
+        <div className="grid grid-flow-row grid-auto grid-cols-1 mt-[50px] h-[400px] w-[800px] overflow-auto" id="send_div">
+          <span>
             To:
           </span>
           <span>
@@ -86,11 +85,11 @@ export default function MessageForm(props: any) {
 
         <div className="grid grid-rows-1 grid-cols-3 mt-[50px] w-[800px]">
             <div>
-              <span className="text-lg">
+              <span>
                 Message:
               </span>
             </div>
-            <div className="col-span-2">
+            <div>
               <textarea className="h-[300px] w-[600px] p-[10px] resize-none" onChange={(e) =>messageHandler(e)}/>
             </div>
         </div>

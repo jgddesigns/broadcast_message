@@ -1,10 +1,11 @@
 import {useState, useEffect} from 'react';
 import AWS from 'aws-sdk';
 
+
+//Not in program.... add to program to allow for more inserts
 function InsertAWS(props: any) {
   const [Clicked, setClicked] = useState(false);
 
-  // Create an instance of the Lambda service object
   const dynamo = new AWS.DynamoDB();
 
   const user_arr = [
@@ -15,6 +16,8 @@ function InsertAWS(props: any) {
         'email': { S: 'jdunntestacct@gmail.com' },
         'password': { S: 'jay12345' },
       },
+
+      //random data generated from chat gpt
       // {
       //   'id': { N: '4' },
       //   'name': { S: 'Bob Brown' },
@@ -190,10 +193,6 @@ function InsertAWS(props: any) {
     }
   }, [props.Clicked])
 
-  const clickedHandler = () => {
-    setClicked(!Clicked)
-  }
-  // Function to invoke the Lambda function
   async function insert(){
     try {
       console.log('Received event:', JSON.stringify(event, null, 2));

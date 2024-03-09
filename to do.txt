@@ -1,0 +1,2 @@
+invalid login needs message
+display messages after first entry (delayed do to setstate)
