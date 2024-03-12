@@ -27,9 +27,9 @@ export default function ScanDB(props: any) {
   }, [props.Login])
 
   AWS.config.update({
-    region: 'us-west-1', 
-    accessKeyId: 'AKIAV3QMJHMLY2CXER4V', 
-    secretAccessKey: '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', 
+    region: '', 
+    accessKeyId: '', 
+    secretAccessKey: '', 
   });
 
   const dynamo = new AWS.DynamoDB.DocumentClient();

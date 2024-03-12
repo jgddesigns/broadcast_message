@@ -46,8 +46,8 @@ export default function SendMail(props: any) {
   }
 
   const sendEmail = () => {
-    emailjs.send('service_fpq9kbl', 'template_wc6gkfd', buildList(), {
-      publicKey: 'hmXhYjWMKHyV8viSP',
+    emailjs.send('', '', buildList(), {
+      publicKey: '',
     }).then(
         () => {
           console.log('SUCCESS!');
