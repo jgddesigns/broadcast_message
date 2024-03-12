@@ -1,6 +1,9 @@
 import {useState, useEffect} from 'react'
 import DOMPurify from 'dompurify'
 import ScanDB from './scan_db'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
+
 
 export default function LoginForm(props: any) {
   const [Email, setEmail] = useState("")
@@ -18,6 +21,12 @@ export default function LoginForm(props: any) {
   const text_class = ["w-[400px] h-[60px] resize-none p-[10px]", "w-[400px] h-[60px] resize-none p-[10px] outline-none border-2 border-red-400"]
   const [EmailClass, setEmailClass] = useState(text_class[0])
   const [PasswordClass, setPasswordClass] = useState(text_class[0])
+
+  const pass_icon = [faEye, faEyeSlash]
+  const [PasswordIcon, setPasswordIcon] = useState(pass_icon[0])
+
+  const pass_input = ["password", ""]
+  const [PasswordInput, setPasswordInput] = useState(pass_input[0])
 
   useEffect(() => {
     if(props.Submit){
@@ -184,6 +193,11 @@ export default function LoginForm(props: any) {
     console.log("====================")
   }
 
+  const togglePassIcon = () => {
+    PasswordIcon == pass_icon[0] ? setPasswordIcon(pass_icon[1]) : setPasswordIcon(pass_icon[0])
+    PasswordInput == pass_input[0] ? setPasswordInput(pass_input[1]) : setPasswordInput(pass_input[0])
+  }
+
   return (
     <div>
         <div className="grid grid-rows-3 text-2xl">
@@ -194,12 +208,14 @@ export default function LoginForm(props: any) {
               <textarea className={EmailClass} onChange={(e) => emailHandler(e.target.value)}/>
           </div>
 
-          <div className="grid grid-rows-2 grid-cols-2">
+          <div className="grid grid-rows-2 grid-cols-2">     
               <span>
                   Password:
               </span>
 
-              <textarea className={PasswordClass} onChange={(e) => passwordHandler(e.target.value)}/>
+              <input type={PasswordInput} className={PasswordClass} onChange={(e) => passwordHandler(e.target.value)}/>
+
+              <FontAwesomeIcon icon={PasswordIcon} className="ml-[760px] mt-[15px] absolute cursor-pointer" onClick={togglePassIcon}/>
           </div>
           
           <div className="text-red-500" dangerouslySetInnerHTML={{ __html: ValidationMessage }}/> 
@@ -214,7 +230,7 @@ export default function LoginForm(props: any) {
           </div>
         </div>
      
-        <ScanDB Submit={props.Submit} Data={props.Data} Login={props.Login} setLogin={props.setLogin} setUserData={setUserData} setSendList={props.setSendList}/>
+        <ScanDB Submit={props.Submit} Data={props.Data} Login={props.Login} setLogin={setLogin} setUserData={setUserData} setSendList={props.setSendList}/>
     </div>
   );
 }
