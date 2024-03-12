@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import AWS from 'aws-sdk';
 
+import {region, access, secret} from '../credentials/aws.js'
+
 export default function ScanDB(props: any) {
   var user_found = false
 
@@ -27,9 +29,9 @@ export default function ScanDB(props: any) {
   }, [props.Login])
 
   AWS.config.update({
-    region: '', 
-    accessKeyId: '', 
-    secretAccessKey: '', 
+    region: region, 
+    accessKeyId: access, 
+    secretAccessKey: secret, 
   });
 
   const dynamo = new AWS.DynamoDB.DocumentClient();

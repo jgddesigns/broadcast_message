@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import emailjs from '@emailjs/browser';
 
+import {service, template, publickey} from '../credentials/emailjs.js'
 
 export default function SendMail(props: any) {
 
@@ -46,8 +47,8 @@ export default function SendMail(props: any) {
   }
 
   const sendEmail = () => {
-    emailjs.send('', '', buildList(), {
-      publicKey: '',
+    emailjs.send(service, template, buildList(), {
+      publicKey: publickey,
     }).then(
         () => {
           console.log('SUCCESS!');
