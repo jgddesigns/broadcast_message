@@ -8,6 +8,7 @@ export default function MessageForm(props: any) {
   const [ToArray, setToArray] = useState([])
   const [Send, setSend] = useState(false)
   const [Message, setMessage] = useState('')
+  const [MessageSent, setMessageSent] = useState(false)
 
 
   useEffect(() => {
@@ -58,49 +59,66 @@ export default function MessageForm(props: any) {
     setMessage(e.target.value)
   }
 
+  const resetHandler = () => {
+    setMessageSent(false)
+  }
+
   return (
-    <div className="grid grid-flow-row grid-auto grid-cols-1 gap-12 text-xl">
-        <div className="grid grid-rows-1 grid-cols-2 mt-[150px] w-[400px]">
-            <span>
-                From:
-            </span>
-            <textarea className="w-[300px] h-[50px] p-[10px] resize-none" value={props.User["email"]} disabled/>
-        </div>
-
-        <div className="grid grid-flow-row grid-auto grid-cols-1 mt-[50px] h-[400px] w-[800px] overflow-auto" id="send_div">
-          <span>
-            To:
-          </span>
-          <span>
-            {Mapped ? SendMap.map(result => {
-              return (
-                <div className="grid grid-rows-1 grid-cols-2" key={result.id} id={result.value.id}>
-                  <span className="ml-[10%] w-[200px] mt-[12px]">{result.value.name}</span> 
-                  <input type="checkbox" className="w-[20px]" value={result.value.email} onChange={(e)=>toHandler(e)}/>
-                </div>
-              )
-            }): null}
-          </span>
-        </div>
-
-        <div className="grid grid-rows-1 grid-cols-3 mt-[50px] w-[800px]">
-            <div>
+    <div>
+      {!MessageSent ?
+      <div className="grid grid-flow-row grid-auto grid-cols-1 gap-12 text-xl">
+          <div className="grid grid-rows-1 grid-cols-2 mt-[150px] w-[400px]">
               <span>
-                Message:
+                  From:
               </span>
-            </div>
-            <div>
-              <textarea className="h-[300px] w-[600px] p-[10px] resize-none" onChange={(e) =>messageHandler(e)}/>
-            </div>
-        </div>
-        <div>
-          <SendMail Send={Send} setSend={setSend} ToArray={ToArray} Message={Message}/>
-        </div>
-        <div className="grid grid-rows-1 grid-cols-1 mt-[200px] center">
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={sendHandler}>
-              Submit
+              <textarea className="w-[300px] h-[50px] p-[10px] resize-none" value={props.User["email"]} disabled/>
+          </div>
+
+          <div className="grid grid-flow-row grid-auto grid-cols-1 mt-[50px] h-[400px] w-[800px] overflow-auto" id="send_div">
+            <span>
+              To:
+            </span>
+            <span>
+              {Mapped ? SendMap.map(result => {
+                return (
+                  <div className="grid grid-rows-1 grid-cols-2" key={result.id} id={result.value.id}>
+                    <span className="ml-[10%] w-[200px] mt-[12px]">{result.value.name}</span> 
+                    <input type="checkbox" className="w-[20px]" value={result.value.email} onChange={(e)=>toHandler(e)}/>
+                  </div>
+                )
+              }): null}
+            </span>
+          </div>
+
+          <div className="grid grid-rows-1 grid-cols-3 mt-[50px] w-[800px]">
+              <div>
+                <span>
+                  Message:
+                </span>
+              </div>
+              <div>
+                <textarea className="h-[300px] w-[600px] p-[10px] resize-none" onChange={(e) =>messageHandler(e)}/>
+              </div>
+          </div>
+          <div>
+            <SendMail Send={Send} setSend={setSend} ToArray={ToArray} Message={Message} setMessageSent={setMessageSent}/>
+          </div>
+          <div className="grid grid-rows-1 grid-cols-1 mt-[200px] center">
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-2xl" onClick={sendHandler}>
+                Submit
+            </button>
+          </div>
+      </div>
+      :
+        <div className="grid grid-rows-2 grid-cols-1 gap-12 text-4xl text-green-400">
+          <span>
+            Message has been sent successfully!
+          </span>
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-36 rounded" onClick={resetHandler}>
+            Reset Form
           </button>
         </div>
+      }
     </div>
   );
 }

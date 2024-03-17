@@ -17,6 +17,7 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "aws-amplify": "^6.0.17",
     "aws-sdk": "^2.1565.0",
+    "dompurify": "^3.0.9",
     "googleapis": "^133.0.0",
     "next": "14.1.0",
     "nvm": "^0.0.4",

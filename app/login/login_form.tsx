@@ -112,7 +112,7 @@ export default function LoginForm(props: any) {
     var chars = 0
     var i = 1
     var chars_str = "<div>Password needs at least 2 special characters.</div>"
-    var len_str = "<div>Password needs at least 8 characters.</div"
+    var len_str = "<div>Password needs at least 8 characters.</div>"
     var valid_str = ValidationMessage
 
     setValidationMessage(ValidationMessage.replace(login_str, ""))

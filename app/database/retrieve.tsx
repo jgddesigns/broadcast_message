@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import AWS from 'aws-sdk';
+import credentials from '../credentials/aws.js'
 
 export default function RetrieveAWS(props: any) {
   const [response, setResponse] = useState('');
@@ -19,6 +20,12 @@ export default function RetrieveAWS(props: any) {
             'password': { S: props.AWSData[1] },
         },
       };
+
+      AWS.config.update({
+        accessKeyId: credentials[0],
+        secretAccessKey: credentials[1],
+        region: credentials[2]
+      });
     
       await dynamo.scan(params).promise();
       
