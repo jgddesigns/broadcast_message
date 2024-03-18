@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 
 import SendMail from './send_mail'
 
+import {Watch} from 'react-loader-spinner'
+
 export default function MessageForm(props: any) {
   const [SendMap, setSendMap] = useState(Object)
   const [Mapped, setMapped] = useState(false)
@@ -9,6 +11,7 @@ export default function MessageForm(props: any) {
   const [Send, setSend] = useState(false)
   const [Message, setMessage] = useState('')
   const [MessageSent, setMessageSent] = useState(false)
+  const [MessageLoad, setMessageLoad] = useState(false)
 
 
   useEffect(() => {
@@ -101,7 +104,7 @@ export default function MessageForm(props: any) {
               </div>
           </div>
           <div>
-            <SendMail Send={Send} setSend={setSend} ToArray={ToArray} Message={Message} setMessageSent={setMessageSent}/>
+            <SendMail Send={Send} setSend={setSend} ToArray={ToArray} Message={Message} setMessageSent={setMessageSent} setMessageLoad={setMessageLoad}/>
           </div>
           <div className="grid grid-rows-1 grid-cols-1 mt-[200px] center">
             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-2xl" onClick={sendHandler}>
@@ -109,15 +112,26 @@ export default function MessageForm(props: any) {
             </button>
           </div>
       </div>
-      :
-        <div className="grid grid-rows-2 grid-cols-1 gap-12 text-4xl text-green-400">
-          <span>
-            Message has been sent successfully!
-          </span>
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-36 rounded" onClick={resetHandler}>
-            Reset Form
-          </button>
-        </div>
+      : !MessageLoad ? 
+          <Watch
+            visible={true}
+            height="80"
+            width="80"
+            radius="48"
+            color="#4fa94d"
+            ariaLabel="watch-loading"
+            wrapperStyle={{}}
+            wrapperClass=""
+          />
+        : 
+          <div className="grid grid-rows-2 grid-cols-1 gap-12 text-4xl text-green-400">
+            <span>
+              Message has been sent successfully!
+            </span>
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-36 rounded" onClick={resetHandler}>
+              Reset Form
+            </button>
+          </div>
       }
     </div>
   );
