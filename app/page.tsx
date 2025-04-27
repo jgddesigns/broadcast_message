@@ -6,6 +6,7 @@ import MessageForm from './features/message_form'
 import LoginForm from './login/login_form'
 import Logout from './login/logout'
 import LoginHeader from './features/login_header'
+import InsertAWS from './database/insert';
 
 
 export default function Home() {
@@ -18,6 +19,8 @@ export default function Home() {
   const [Submit, setSubmit] = useState(false)
   const [Data, setData] = useState([""])
   const [Login, setLogin] = useState(false)
+
+
 
   useEffect(() => {
     if(LoggedIn){
@@ -86,11 +89,11 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
+      <div className="z-10 max-w-5xl w-full items-center gap-48 font-mono text-sm lg:flex">
         <p className="fixed left-0 top-0 flex w-full justify-center bg-gray-500 text-white pb-6 pt-8 lg:static lg:w-auto lg:rounded-xl lg:p-4 text-2xl">
-          BROADCAST MESSAGE DEMO
+          GROUP MESSAGE DEMO
         </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-gray via-gray dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
+        <div className="fixed bottom-0 flex h-48 w-full ml-[7%] items-end justify-center bg-gradient-to-t from-gray via-gray dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
           <a
             className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
             href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
@@ -98,6 +101,7 @@ export default function Home() {
             rel="noopener noreferrer"
           >
             <LoginHeader LoggedIn={LoggedIn} User={User} setTriggerLogout={setTriggerLogout}/>
+            {/* <InsertAWS Clicked={true}/> */}
           </a>
         </div>
       </div>
@@ -106,7 +110,7 @@ export default function Home() {
         <div>
         {!LoggedIn ?           
             <div className="mt-[10%]">
-              <LoginForm Data={Data} setData={setData} Submit={Submit} setSubmit={setSubmit} Login={Login} setLogin={setLogin} setLoggedIn={setLoggedIn} setUser={setUser} setSendList={setSendList}/>
+              <LoginForm Data={Data} setData={setData} Submit={Submit} setSubmit={setSubmit} Login={Login} LoggedIn={LoggedIn} setLogin={setLogin} setLoggedIn={setLoggedIn} setUser={setUser} setSendList={setSendList}/>
             </div>
         : <div>
             <div>
@@ -128,6 +132,7 @@ export default function Home() {
           rel="noopener noreferrer"
         />
       </div>
+      
     </main>
   
   )

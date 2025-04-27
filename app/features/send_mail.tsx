@@ -16,13 +16,6 @@ export default function SendMail(props: any) {
     }
   }, [props.Send])
 
-  //test data
-  // const emailParams = {
-  //   from: 'Sender Name <jdunntestacct@gmail.com>',
-  //   to: 'jdunn7008@gmail.com,jasongeorgedunn@csus.edu',
-  //   subject: 'Form Submission',
-  //   text: 'test sending'
-  // };
 
   const buildList = () => {
     console.log(props.ToArray)

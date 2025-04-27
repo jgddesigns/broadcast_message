@@ -13,6 +13,10 @@ export default function MessageForm(props: any) {
   const [MessageSent, setMessageSent] = useState(false)
   const [MessageLoad, setMessageLoad] = useState(false)
 
+  const send_class = ["bg-gray-300 text-white font-bold py-2 px-4 rounded text-2xl disabled", "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-2xl"]
+
+  const [SendClass, setSendClass] = useState(send_class[0])
+
 
   useEffect(() => {
     if(props.User){
@@ -48,6 +52,7 @@ export default function MessageForm(props: any) {
         }
       }
     }
+    Message.length > 0 && temp_arr.length > 0 ? setSendClass(send_class[1]) : setSendClass(send_class[0])
     setToArray(temp_arr)
     console.log(temp_arr)
   }
@@ -60,6 +65,8 @@ export default function MessageForm(props: any) {
 
   const messageHandler = (e: any) => {
     setMessage(e.target.value)
+
+    e.target.value.length > 0 && ToArray.length > 0 ? setSendClass(send_class[1]) : setSendClass(send_class[0])
   }
 
   const resetHandler = () => {
@@ -69,18 +76,20 @@ export default function MessageForm(props: any) {
   return (
     <div>
       {!MessageSent ?
-      <div className="grid grid-flow-row grid-auto grid-cols-1 gap-12 text-xl">
+      <div className="grid grid-flow-row grid-auto grid-cols-1 gap-12 mr-48 text-xl">
           <div className="grid grid-rows-1 grid-cols-2 mt-[150px] w-[400px]">
               <span>
                   From:
               </span>
-              <textarea className="w-[300px] h-[50px] p-[10px] resize-none" value={props.User["email"]} disabled/>
+              <textarea className="w-[300px] h-[50px] p-[10px] ml-16 resize-none bg-gray-300 rounded" value={props.User["email"]} disabled/>
           </div>
 
-          <div className="grid grid-flow-row grid-auto grid-cols-1 mt-[50px] h-[400px] w-[800px] overflow-auto" id="send_div">
-            <span>
+          <div className="grid grid-rows-1 grid-cols-3 mt-[50px] w-[800px]">
+          <span>
               To:
-            </span>
+          </span>
+          <div className="grid grid-flow-row grid-auto bg-gray-300 p-8 rounded grid-cols-1 h-[400px] w-[600px] overflow-auto" id="send_div">
+
             <span>
               {Mapped ? SendMap.map(result => {
                 return (
@@ -92,6 +101,7 @@ export default function MessageForm(props: any) {
               }): null}
             </span>
           </div>
+          </div>
 
           <div className="grid grid-rows-1 grid-cols-3 mt-[50px] w-[800px]">
               <div>
@@ -100,14 +110,14 @@ export default function MessageForm(props: any) {
                 </span>
               </div>
               <div>
-                <textarea className="h-[300px] w-[600px] p-[10px] resize-none" onChange={(e) =>messageHandler(e)}/>
+                <textarea className="h-[300px] w-[600px] p-[10px] resize-none rounded" onChange={(e) =>messageHandler(e)}/>
               </div>
           </div>
           <div>
             <SendMail Send={Send} setSend={setSend} ToArray={ToArray} Message={Message} setMessageSent={setMessageSent} setMessageLoad={setMessageLoad}/>
           </div>
-          <div className="grid grid-rows-1 grid-cols-1 mt-[200px] center">
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-2xl" onClick={sendHandler}>
+          <div className="grid grid-rows-1 grid-cols-1 place-items-end mt-[10px] center">
+            <button className={SendClass} onClick={sendHandler}>
                 Submit
             </button>
           </div>
@@ -124,11 +134,11 @@ export default function MessageForm(props: any) {
             wrapperClass=""
           />
         : 
-          <div className="grid grid-rows-2 grid-cols-1 gap-12 text-4xl text-green-400">
+          <div className="grid grid-rows-2 grid-cols-1 gap-12 text-4xl text-green-400 mt-12">
             <span>
               Message has been sent successfully!
             </span>
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-36 rounded" onClick={resetHandler}>
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-24 rounded" onClick={resetHandler}>
               Reset Form
             </button>
           </div>
@@ -138,4 +148,3 @@ export default function MessageForm(props: any) {
 }
 
 
-// @refresh reset

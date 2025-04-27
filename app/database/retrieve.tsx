@@ -10,9 +10,7 @@ export default function RetrieveAWS(props: any) {
 
   async function insert(){
 
-    try {
-      console.log('Received event:', JSON.stringify(event, null, 2));
-      
+    try {      
       const params = {   
         TableName: 'broadcast',
         Item: {
@@ -34,7 +32,6 @@ export default function RetrieveAWS(props: any) {
           body: JSON.stringify('Data inserted successfully')
       };
     } catch (err) {
-        console.error('Error:', err);
         return {
             statusCode: 500,
             body: JSON.stringify('An error occurred')

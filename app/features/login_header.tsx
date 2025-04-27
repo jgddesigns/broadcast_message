@@ -29,7 +29,7 @@ export default function LoginHeader(props: any) {
                         </div>
                     </div>
                 : 
-                    <div>
+                    <div className="ml-72">
                         <span className="italic">Logged Out</span>
                     </div>
                 }

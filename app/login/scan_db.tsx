@@ -4,6 +4,7 @@ import credentials from '../credentials/aws.js'
 
 export default function ScanDB(props: any) {
   var user_found = false
+  const login_str = "Login Unsuccessful. Please check the credentials."
 
   useEffect(() => {
     if(props.Submit){
@@ -23,9 +24,9 @@ export default function ScanDB(props: any) {
     if(props.Login){
       console.log("Login Successful")
     }else{
-      console.log("Login Unsuccessful")    
+      console.log("Login Unsuccessful")
     }
-  }, [props.Login])
+  }, [props.Login, props.Submit])
 
   AWS.config.update({
     accessKeyId: credentials[0],
@@ -64,7 +65,8 @@ export default function ScanDB(props: any) {
       props.setSendList(db_rows)
 
       for (var i=0; i<db_rows.length; i++){
-        if(db_rows[i]["email"] == props.Data[0] && db_rows[i]["password"] == props.Data[1]){
+        if(db_rows[i]["email"].toLowerCase() == props.Data[0].toLowerCase() && db_rows[i]["password"] == props.Data[1]){
+          props.setValidationMessage("")
           console.log("match found")
           console.log(db_rows[i])
           loginHandler(db_rows[i])
@@ -75,7 +77,9 @@ export default function ScanDB(props: any) {
 
       if(!user_found){
         props.setLogin(false)
+        props.setValidationMessage(login_str) 
       }
+
     }catch(err){
       console.error('Error:', err);
       return {
@@ -87,8 +91,6 @@ export default function ScanDB(props: any) {
 
   return (
     <div>
-      {/* <button onClick={getDB}>Scan DB</button>
-      <p>{response}</p> */}
     </div>
   );
 }
