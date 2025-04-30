@@ -58,21 +58,23 @@ export default function LoginForm(props: any) {
 
   const emailHandler = (value: any) => {
     setEmail(value)
-    validateEmail(value)
+    validateEmail(value, true)
   }
 
 
   const passwordHandler = (value: any) => {
     setPassword(value)
-    validatePassword(value)
+    validatePassword(value, true)
   }
 
 
-  const validateEmail = (value: any) => {
+  const validateEmail = (value: any, check = false) => {
     const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,2}\.[0-9]{1,2}\.[0-9]{1,2}\.[0-9]{1,2}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     var email_str = "<div>Email is invalid.</div>"
 
     let valid_str = ValidationMessage
+    console.log("\n\nstart string")
+    console.log(valid_str)
 
     valid_str = valid_str.replace(login_str, "")
 
@@ -86,14 +88,14 @@ export default function LoginForm(props: any) {
       setValidationMessage(valid_str)
       return false
     }
-    valid_str = ValidationMessage.replace(email_str, "")
+    valid_str = valid_str.replace(email_str, "")
     console.log("====================")
     console.log("Email confirmed as valid.")
     console.log("====================")  
     setEmailClass(text_class[0])
     setValidEmail(true)
 
-    !ValidPassword ? validatePassword(document.getElementsByClassName(PasswordClass)[0]["value"]) : null
+    // check ? validatePassword(document.getElementsByClassName(PasswordClass)[0]["value"]) : null
 
     setValidationMessage(valid_str)
     checkValidity(true, ValidPassword)
@@ -101,7 +103,7 @@ export default function LoginForm(props: any) {
   }
 
 
-  const validatePassword = (value: any) => {
+  const validatePassword = (value: any, check = false) => {
     var format = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/
     var chars = 0
     var i = 1
@@ -110,6 +112,8 @@ export default function LoginForm(props: any) {
     var valid_str = ValidationMessage
 
     valid_str = valid_str.replace(login_str, "")
+    console.log("\n\npass start string")
+    console.log(valid_str)
 
     while(chars < 2 && i < value.length){
       format.test(value[i]) ? chars++ : null
@@ -148,14 +152,18 @@ export default function LoginForm(props: any) {
       return false
     }
 
+    console.log("\n\nvalid string")
+    console.log(valid_str)
+    valid_str.replace(chars_str, "")
+    valid_str.replace(len_str, "")
     console.log("====================")
     console.log("Password confirmed as valid.")
     console.log("====================")  
-    setValidationMessage("")
+    setValidationMessage(valid_str)
     setPasswordClass(text_class[0])
     setValidPassword(true)
-    validateEmail(document.getElementsByClassName(EmailClass)[0]["value"])
-    !ValidEmail ? checkValidity(ValidEmail, true) : null
+    // check ? validateEmail(document.getElementsByClassName(EmailClass)[0]["value"]) : null
+    !ValidPassword || !ValidEmail ? checkValidity(ValidEmail, true) : null
     return true
   }
 
@@ -167,6 +175,7 @@ export default function LoginForm(props: any) {
       console.log("====================")
       console.log("Both login fields confirmed as valid.")
       console.log("====================")
+      setValidationMessage("")
       setSubmitClass(submit_class[1]) 
     }else{
       console.log("====================")
@@ -196,7 +205,7 @@ export default function LoginForm(props: any) {
   const togglePassIcon = () => {
     !PasswordIcon ? setPasswordIcon(pass_icon[0]) : null 
     PasswordIcon == pass_icon[0] ? setPasswordIcon(pass_icon[1]) : setPasswordIcon(pass_icon[0])
-    PasswordInput == pass_input[0] ? setPasswordInput(pass_input[1]) : setPasswordInput(pass_input[0])
+    !PasswordIcon ? setPasswordInput(pass_input[0]) : PasswordInput == pass_input[0] ? setPasswordInput(pass_input[1]) : setPasswordInput(pass_input[0])
   }
 
 
