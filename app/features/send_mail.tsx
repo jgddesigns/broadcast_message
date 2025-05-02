@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import emailjs from '@emailjs/browser';
 
-import credentials from '../credentials/emailjs.js'
+import credentials from '../../credentials/emailjs.js'
 
 export default function SendMail(props: any) {
 

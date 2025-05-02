@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import AWS from 'aws-sdk'
-import credentials from '../credentials/aws.js'
+import credentials from '../../credentials/aws.js'
 
 export default function ScanDB(props: any) {
   var user_found = false

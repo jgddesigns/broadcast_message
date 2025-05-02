@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import AWS from 'aws-sdk';
-import credentials from '../credentials/aws.js'
+import credentials from '../../credentials/aws.js'
 
 export default function RetrieveAWS(props: any) {
   const [response, setResponse] = useState('');

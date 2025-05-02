@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 import AWS from 'aws-sdk';
-import credentials from '../credentials/aws.js'
+import credentials from '../../credentials/aws.js'
 
 
 //Not in program.... add to program to allow for more inserts
