@@ -41,8 +41,8 @@ export default function SendMail(props: any) {
 
   const sendEmail = () => {
     props.setMessageSent(true)
-    emailjs.send(credentials[0], credentials[1], buildList(), {
-      publicKey: credentials[2],
+    emailjs.send(credentials[0] ? credentials[0] : "", credentials[1] ? credentials[1] : "", buildList(), {
+      publicKey: credentials[2] ? credentials[2] : "",
     }).then(
         () => {
           console.log('SUCCESS!');
