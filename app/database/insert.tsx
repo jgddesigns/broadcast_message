@@ -12,7 +12,7 @@ function InsertAWS(props: any) {
   AWS.config.update({
     accessKeyId: credentials[0],
     secretAccessKey: credentials[1],
-    region: credentials[2]
+    region: "us-east-2"
   });
 
   const user_arr = [
