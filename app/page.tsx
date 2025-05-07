@@ -88,51 +88,58 @@ export default function Home() {
   }, [SendList, User, ArrayCleaned])
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center gap-48 font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center bg-gray-500 text-white pb-6 pt-8 lg:static lg:w-auto lg:rounded-xl lg:p-4 text-2xl">
-          GROUP MESSAGE DEMO
-        </p>
-        <div className="fixed bottom-0 flex h-48 w-full ml-[7%] items-end justify-center bg-gradient-to-t from-gray via-gray dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <LoginHeader LoggedIn={LoggedIn} User={User} setTriggerLogout={setTriggerLogout}/>
-            {/* <InsertAWS Clicked={true}/> */}
-          </a>
-        </div>
-      </div>
-
-      <div>
+    <main className="flex min-h-screen flex-col items-center justify-between p-24"> 
+      {window.screen.width > 800 ?
         <div>
-        {!LoggedIn ?           
-            <div className="mt-[10%]">
-              <LoginForm Data={Data} setData={setData} Submit={Submit} setSubmit={setSubmit} Login={Login} LoggedIn={LoggedIn} setLogin={setLogin} setLoggedIn={setLoggedIn} setUser={setUser} setSendList={setSendList}/>
-            </div>
-        : <div>
-            <div>
-              <MessageForm User={User} SendList={SendList} setSendData={setSendData} ArrayCleaned={ArrayCleaned}/>
-            </div>
-            <div>
-              <Logout setData={setData} setSubmit={setSubmit} setLogin={setLogin} setLoggedIn={setLoggedIn} TriggerLogout={TriggerLogout} setTriggerLogout={setTriggerLogout}/>
+          <div className="z-10 max-w-5xl w-full items-center gap-48 font-mono text-sm lg:flex">
+            <p className="fixed left-0 top-0 flex w-full justify-center bg-gray-500 text-white pb-6 pt-8 lg:static lg:w-auto lg:rounded-xl lg:p-4 text-2xl">
+              GROUP MESSAGE DEMO
+            </p>
+            <div className="fixed bottom-0 flex h-48 w-full ml-[7%] items-end justify-center bg-gradient-to-t from-gray via-gray dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
+              <a
+                className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
+                href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <LoginHeader LoggedIn={LoggedIn} User={User} setTriggerLogout={setTriggerLogout}/>
+                {/* <InsertAWS Clicked={true}/> */}
+              </a>
             </div>
           </div>
-        }
-        </div>
-      </div>
 
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        />
-      </div>
-      
+          <div>
+            <div>
+            {!LoggedIn ?           
+                <div className="mt-[10%]">
+                  <LoginForm Data={Data} setData={setData} Submit={Submit} setSubmit={setSubmit} Login={Login} LoggedIn={LoggedIn} setLogin={setLogin} setLoggedIn={setLoggedIn} setUser={setUser} setSendList={setSendList}/>
+                </div>
+            : <div>
+                <div>
+                  <MessageForm User={User} SendList={SendList} setSendData={setSendData} ArrayCleaned={ArrayCleaned}/>
+                </div>
+                <div>
+                  <Logout setData={setData} setSubmit={setSubmit} setLogin={setLogin} setLoggedIn={setLoggedIn} TriggerLogout={TriggerLogout} setTriggerLogout={setTriggerLogout}/>
+                </div>
+              </div>
+            }
+            </div>
+          </div>
+
+          <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
+            <a
+              href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+              className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
+              target="_blank"
+              rel="noopener noreferrer"
+            />
+          </div>
+        </div>
+      :
+        <div className="text-black mt-48">
+          No mobile support. Intended for desktop only.
+        </div>
+      }
     </main>
   
   )
