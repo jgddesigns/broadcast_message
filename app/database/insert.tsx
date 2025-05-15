@@ -193,9 +193,9 @@ function InsertAWS(props: any) {
 
   useEffect(() => {
     if(props.Clicked){
-      console.log("====================")
-      console.log("Insert function initiated.")
-      console.log("====================")
+      //console.log("====================")
+      //console.log("Insert function initiated.")
+      //console.log("====================")
       // setClicked(true)
       insert();
     }
@@ -204,7 +204,7 @@ function InsertAWS(props: any) {
 
   async function insert(){
     try {
-      console.log('Received event:', JSON.stringify(event, null, 2));
+      //console.log('Received event:', JSON.stringify(event, null, 2));
       
       //FOR MULTIPLE USER INSERTS IN 'users_arr' ARRAY
       // for(var i=0; i<user_arr.length; i++){
@@ -227,7 +227,7 @@ function InsertAWS(props: any) {
       };
       await dynamo.putItem(params).promise();
       
-      console.log('insert successful')
+      //console.log('insert successful')
       setClicked(true)
       
       return {

@@ -8,23 +8,23 @@ export default function ScanDB(props: any) {
 
   useEffect(() => {
     if(props.Submit){
-        console.log("Submit passed to scan database.")
+        //console.log("Submit passed to scan database.")
         getDB()
     }
   }, [props.Data])
 
   useEffect(() => {
     if(props.Data){
-        console.log(props.Data)
+        //console.log(props.Data)
     }
   }, [props.Data])
 
   useEffect(() => {
-    console.log("login - " + props.Login)
+    //console.log("login - " + props.Login)
     if(props.Login){
-      console.log("Login Successful")
+      //console.log("Login Successful")
     }else{
-      console.log("Login Unsuccessful")
+      //console.log("Login Unsuccessful")
     }
   }, [props.Login, props.Submit])
 
@@ -37,16 +37,16 @@ export default function ScanDB(props: any) {
   const dynamo = new AWS.DynamoDB.DocumentClient();
 
   const loginHandler = (user: any) => {
-    console.log("Login Successful")
-    console.log("User:")
-    console.log(user)
+    //console.log("Login Successful")
+    //console.log("User:")
+    //console.log(user)
     props.setLogin(true)
     props.setUserData(user)
   }
 
   async function getDB(){
     try {
-      console.log('Received event:', JSON.stringify(event, null, 2));
+      //console.log('Received event:', JSON.stringify(event, null, 2));
       
       const params = {   
         TableName: 'broadcast',
@@ -57,8 +57,8 @@ export default function ScanDB(props: any) {
       };
     
       var response = await dynamo.scan(params).promise();
-      console.log("db scanned")
-      console.log(response["Items"])
+      //console.log("db scanned")
+      //console.log(response["Items"])
       var db_rows: any = []
       response["Items"] ? db_rows = response["Items"] : null
 
@@ -67,8 +67,8 @@ export default function ScanDB(props: any) {
       for (var i=0; i<db_rows.length; i++){
         if(db_rows[i]["email"].toLowerCase() == props.Data[0].toLowerCase() && db_rows[i]["password"] == props.Data[1]){
           props.setValidationMessage("")
-          console.log("match found")
-          console.log(db_rows[i])
+          //console.log("match found")
+          //console.log(db_rows[i])
           loginHandler(db_rows[i])
           i = db_rows.length
           user_found = true

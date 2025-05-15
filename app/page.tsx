@@ -24,71 +24,71 @@ export default function Home() {
 
   useEffect(() => {
     setWindowWidth(window.screen.width)
-    console.log(window.screen.width)
+    //console.log(window.screen.width)
   }, []);
 
   useEffect(() => {
     if(LoggedIn){
-        console.log("====================")
-        console.log("Login passed to homepage.")
-        console.log(LoggedIn)
-        console.log("====================")
+        //console.log("====================")
+        //console.log("Login passed to homepage.")
+        //console.log(LoggedIn)
+        //console.log("====================")
     }
   }, [LoggedIn])
 
   useEffect(() => {
     if(SendData){
-        console.log("====================")
-        console.log("Recipient Data successfully set.")
-        console.log(SendData)
-        console.log("====================")
+        //console.log("====================")
+        //console.log("Recipient Data successfully set.")
+        //console.log(SendData)
+        //console.log("====================")
     }
   }, [SendData])
 
   useEffect(() => {
     if(SendList){
-        console.log("====================")
-        console.log("Send list successfully set on home page.")
-        console.log(SendList)
+        //console.log("====================")
+        //console.log("Send list successfully set on home page.")
+        //console.log(SendList)
     }
   }, [SendList])
 
   useEffect(() => {
     if(User){
-      console.log("====================")
-      console.log("User data successfully set on home page.")
-      console.log(User)
-      console.log("====================")
+      //console.log("====================")
+      //console.log("User data successfully set on home page.")
+      //console.log(User)
+      //console.log("====================")
     }
   }, [User])
 
   useEffect(() => {
     if(TriggerLogout){
-      console.log("====================")
-      console.log("Logout triggered on home page.")
-      console.log(TriggerLogout)
-      console.log("====================")
+      //console.log("====================")
+      //console.log("Logout triggered on home page.")
+      //console.log(TriggerLogout)
+      //console.log("====================")
     }
   }, [TriggerLogout])
 
   useEffect(() => {
     if(SendList && User){
       var temp_list = SendList
-      console.log("====================")
-      console.log("Removing current user from send list...")
+      //console.log("====================")
+      //console.log("Removing current user from send list...")
       try{
         for(var i=0; i<temp_list.length; i++){
           if(temp_list[i]["id"] == User["id"]){
-            console.log("User match found.")
+            //console.log("User match found.")
             temp_list.splice(i, 1)
-            console.log("User removed. New list:")
-            console.log(temp_list)
+            //console.log("User removed. New list:")
+            //console.log(temp_list)
             setSendList(temp_list)
             setArrayCleaned(true)
           }
         }
       }catch{}
-      console.log("====================")
+      //console.log("====================")
     }
   }, [SendList, User, ArrayCleaned])
 

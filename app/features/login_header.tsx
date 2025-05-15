@@ -4,10 +4,10 @@ export default function LoginHeader(props: any) {
 
     useEffect(() => {
         if(props.LoggedIn){
-            console.log("====================")
-            console.log("User Login passed to login header.")
-            console.log(props.User)
-            console.log("====================")
+            //console.log("====================")
+            //console.log("User Login passed to login header.")
+            //console.log(props.User)
+            //console.log("====================")
         }
     }, [props.LoggedIn])
 

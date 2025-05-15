@@ -6,10 +6,10 @@ export default function Logout(props: any) {
 
   useEffect(() => {
     if(props.TriggerLogout){
-      console.log("====================")
-      console.log("Logout triggered on login form.")
-      console.log(props.TriggerLogout)
-      console.log("====================")
+      //console.log("====================")
+      //console.log("Logout triggered on login form.")
+      //console.log(props.TriggerLogout)
+      //console.log("====================")
       logoutHandler()
     }
   }, [props.TriggerLogout])

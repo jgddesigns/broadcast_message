@@ -20,10 +20,10 @@ export default function MessageForm(props: any) {
 
   useEffect(() => {
     if(props.User){
-        console.log("====================")
-        console.log("User data passed to message form.")
-        console.log(props.User)
-        console.log("====================")
+        //console.log("====================")
+        //console.log("User data passed to message form.")
+        //console.log(props.User)
+        //console.log("====================")
     }
   }, [props.User])
 
@@ -54,12 +54,12 @@ export default function MessageForm(props: any) {
     }
     Message.length > 0 && temp_arr.length > 0 ? setSendClass(send_class[1]) : setSendClass(send_class[0])
     setToArray(temp_arr)
-    console.log(temp_arr)
+    //console.log(temp_arr)
   }
 
   const sendHandler = () => {
-    console.log("Send Button Pressed")
-    console.log(ToArray)
+    //console.log("Send Button Pressed")
+    //console.log(ToArray)
     setSend(true)
   }
 

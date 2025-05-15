@@ -7,27 +7,27 @@ export default function SendMail(props: any) {
 
   useEffect(() => {
     if(props.Send){
-        console.log(props.ToArray)
-        console.log("====================")
-        console.log("Send email initiated.")
-        console.log(props.Message)
+        //console.log(props.ToArray)
+        //console.log("====================")
+        //console.log("Send email initiated.")
+        //console.log(props.Message)
         sendEmail()
-        console.log("====================")
+        //console.log("====================")
     }
   }, [props.Send])
 
 
   const buildList = () => {
-    console.log(props.ToArray)
+    //console.log(props.ToArray)
     var send_str = ''
     for(var i=0; i<props.ToArray.length; i++){
       i < props.ToArray.length-1 ? send_str = send_str + props.ToArray[i] + "," : send_str = send_str + props.ToArray[i]
     }
 
-    console.log("====================")
-    console.log("Email message content:")
-    console.log(send_str)
-    console.log("====================")
+    //console.log("====================")
+    //console.log("Email message content:")
+    //console.log(send_str)
+    //console.log("====================")
 
     var params = {
       from: 'Sender Name <jdunntestacct@gmail.com>',
@@ -45,17 +45,17 @@ export default function SendMail(props: any) {
       publicKey: credentials[2] ? credentials[2] : "",
     }).then(
         () => {
-          console.log('SUCCESS!');
+          //console.log('SUCCESS!');
           props.setSend(false)
           props.setMessageLoad(true)
         },
         (error) => {
-          console.log('FAILED...', error.text);
+          //console.log('FAILED...', error.text);
           props.setSend(false)
         },
       ).finally(
         () =>{
-          console.log("dsdasfgf")
+          //console.log("dsdasfgf")
           
         }
       )

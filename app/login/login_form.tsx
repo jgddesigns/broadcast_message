@@ -45,11 +45,11 @@ export default function LoginForm(props: any) {
 
   useEffect(() => {
     if(Login){
-        console.log("Login passed to login page.")
-        console.log(UserData)
+        //console.log("Login passed to login page.")
+        //console.log(UserData)
         
-        Login ? props.setLoggedIn(Login) : console.log("User login broken on LoginForm page.")
-        UserData ? props.setUser(UserData) : console.log("User data broken on LoginForm page.")
+        Login ? props.setLoggedIn(Login) : //console.log("User login broken on LoginForm page.")
+        UserData ? props.setUser(UserData) : //console.log("User data broken on LoginForm page.")
     }
   }, [Login])
 
@@ -73,25 +73,25 @@ export default function LoginForm(props: any) {
     var email_str = "<div>Email is invalid.</div>"
 
     let valid_str = ValidationMessage
-    console.log("\n\nstart string")
-    console.log(valid_str)
+    //console.log("\n\nstart string")
+    //console.log(valid_str)
 
     valid_str = valid_str.replace(login_str, "")
 
     if (!re.test(value)){
       !valid_str.includes(email_str) ? valid_str = valid_str + email_str : null
-      console.log("====================")
-      console.log("Email is invalid.")
-      console.log("====================")  
+      //console.log("====================")
+      //console.log("Email is invalid.")
+      //console.log("====================")  
       setEmailClass(text_class[1])
       setValidEmail(false)
       setValidationMessage(valid_str)
       return false
     }
     valid_str = valid_str.replace(email_str, "")
-    console.log("====================")
-    console.log("Email confirmed as valid.")
-    console.log("====================")  
+    //console.log("====================")
+    //console.log("Email confirmed as valid.")
+    //console.log("====================")  
     setEmailClass(text_class[0])
     setValidEmail(true)
 
@@ -112,8 +112,8 @@ export default function LoginForm(props: any) {
     var valid_str = ValidationMessage
 
     valid_str = valid_str.replace(login_str, "")
-    console.log("\n\npass start string")
-    console.log(valid_str)
+    //console.log("\n\npass start string")
+    //console.log(valid_str)
 
     while(chars < 2 && i < value.length){
       format.test(value[i]) ? chars++ : null
@@ -121,44 +121,44 @@ export default function LoginForm(props: any) {
     }
 
     if(chars < 2){
-      console.log("====================")
-      console.log("Password needs at least 2 special characters.")
-      console.log(chars)
+      //console.log("====================")
+      //console.log("Password needs at least 2 special characters.")
+      //console.log(chars)
       !valid_str.includes(chars_str) ? valid_str = valid_str + chars_str : null
-      console.log("====================")
+      //console.log("====================")
     }else{
       valid_str = valid_str.replace(chars_str, "")
     }
 
     if(value.length < 8){
-      console.log("====================")
+      //console.log("====================")
       !valid_str.includes(len_str) ? valid_str = valid_str + len_str : null
-      console.log("Password needs at least 8 characters.")
-      console.log("====================")   
+      //console.log("Password needs at least 8 characters.")
+      //console.log("====================")   
     }else{
       valid_str = valid_str.replace(len_str, "")
     }
 
     if((chars < 2) || (value.length < 8)){
-      console.log("valid string -- " + valid_str)
-      console.log("message -- " + ValidationMessage)
+      //console.log("valid string -- " + valid_str)
+      //console.log("message -- " + ValidationMessage)
       valid_str = DOMPurify.sanitize(valid_str)
-      console.log("====================")
-      console.log("Password is invalid.")
-      console.log("====================")
+      //console.log("====================")
+      //console.log("Password is invalid.")
+      //console.log("====================")
       setPasswordClass(text_class[1])  
       setValidPassword(false)
       setValidationMessage(valid_str)
       return false
     }
 
-    console.log("\n\nvalid string")
-    console.log(valid_str)
+    //console.log("\n\nvalid string")
+    //console.log(valid_str)
     valid_str.replace(chars_str, "")
     valid_str.replace(len_str, "")
-    console.log("====================")
-    console.log("Password confirmed as valid.")
-    console.log("====================")  
+    //console.log("====================")
+    //console.log("Password confirmed as valid.")
+    //console.log("====================")  
     setValidationMessage(valid_str)
     setPasswordClass(text_class[0])
     setValidPassword(true)
@@ -169,18 +169,18 @@ export default function LoginForm(props: any) {
 
 
   const checkValidity = (email: any, password: any) => {
-    console.log(email)
-    console.log(password)
+    //console.log(email)
+    //console.log(password)
     if(email && password){
-      console.log("====================")
-      console.log("Both login fields confirmed as valid.")
-      console.log("====================")
+      //console.log("====================")
+      //console.log("Both login fields confirmed as valid.")
+      //console.log("====================")
       setValidationMessage("")
       setSubmitClass(submit_class[1]) 
     }else{
-      console.log("====================")
-      console.log("Login fields are invalid.")
-      console.log("====================")
+      //console.log("====================")
+      //console.log("Login fields are invalid.")
+      //console.log("====================")
       setSubmitClass(submit_class[0])
     } 
   }
@@ -194,11 +194,11 @@ export default function LoginForm(props: any) {
 
 
   const submitProcess = () => {
-    console.log("====================")
-    console.log("Login Data:")
-    console.log(props.Data[0])
-    console.log(props.Data[1])
-    console.log("====================")
+    //console.log("====================")
+    //console.log("Login Data:")
+    //console.log(props.Data[0])
+    //console.log(props.Data[1])
+    //console.log("====================")
   }
 
 
