@@ -10,9 +10,9 @@ function InsertAWS(props: any) {
   const dynamo = new AWS.DynamoDB();
 
   AWS.config.update({
-    accessKeyId: credentials[0],
-    secretAccessKey: credentials[1],
-    region: "us-east-2"
+    accessKeyId: process.env.NEXT_PUBLIC_AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.NEXT_PUBLIC_AWS_SECRET_ACCESS_KEY,
+    region: process.env.NEXT_PUBLIC_AWS_REGION
   });
 
   const user_arr = [

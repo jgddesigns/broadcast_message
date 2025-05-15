@@ -20,9 +20,9 @@ export default function RetrieveAWS(props: any) {
       };
 
       AWS.config.update({
-        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-        secretAccessKey: credentials[1],
-        region: "us-east-2"
+        accessKeyId: process.env.NEXT_PUBLIC_AWS_ACCESS_KEY_ID,
+        secretAccessKey: process.env.NEXT_PUBLIC_AWS_SECRET_ACCESS_KEY,
+        region: process.env.NEXT_PUBLIC_AWS_REGION
       });
     
       await dynamo.scan(params).promise();
