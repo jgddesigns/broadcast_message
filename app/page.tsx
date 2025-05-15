@@ -19,8 +19,13 @@ export default function Home() {
   const [Submit, setSubmit] = useState(false)
   const [Data, setData] = useState([""])
   const [Login, setLogin] = useState(false)
+  const [WindowWidth, setWindowWidth] = useState(801)
 
 
+  useEffect(() => {
+    setWindowWidth(window.screen.width)
+    console.log(window.screen.width)
+  }, []);
 
   useEffect(() => {
     if(LoggedIn){
@@ -89,7 +94,7 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24"> 
-      {window.screen.width > 800 ?
+      {WindowWidth > 800 ?
         <div>
           <div className="z-10 max-w-5xl w-full items-center gap-48 font-mono text-sm lg:flex">
             <p className="fixed left-0 top-0 flex w-full justify-center bg-gray-500 text-white pb-6 pt-8 lg:static lg:w-auto lg:rounded-xl lg:p-4 text-2xl">
