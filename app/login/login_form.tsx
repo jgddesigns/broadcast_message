@@ -48,8 +48,8 @@ export default function LoginForm(props: any) {
         //console.log("Login passed to login page.")
         //console.log(UserData)
         
-        Login ? props.setLoggedIn(Login) : //console.log("User login broken on LoginForm page.")
-        UserData ? props.setUser(UserData) : //console.log("User data broken on LoginForm page.")
+        // Login ? props.setLoggedIn(Login) : //console.log("User login broken on LoginForm page.")
+        // UserData ? props.setUser(UserData) : //console.log("User data broken on LoginForm page.")
     }
   }, [Login])
 
