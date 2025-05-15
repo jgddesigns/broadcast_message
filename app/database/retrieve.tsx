@@ -20,7 +20,7 @@ export default function RetrieveAWS(props: any) {
       };
 
       AWS.config.update({
-        accessKeyId: credentials[0],
+        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
         secretAccessKey: credentials[1],
         region: "us-east-2"
       });
