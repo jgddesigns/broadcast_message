@@ -16,8 +16,8 @@ export default function Home() {
   const [ArrayCleaned, setArrayCleaned] = useState(false)
   const [SendList, setSendList] = useState([])
   const [TriggerLogout, setTriggerLogout] = useState(false)
-  const [Submit, setSubmit] = useState(false)
-  const [Data, setData] = useState([""])
+  const [Submit, setSubmit] = useState(true)
+  const [Data, setData] = useState(["test_user@acct.com", "testpw11!!"])
   const [Login, setLogin] = useState(false)
   const [WindowWidth, setWindowWidth] = useState(801)
 
@@ -73,6 +73,7 @@ export default function Home() {
 
   useEffect(() => {
     if(SendList && User){
+      console.log("12345")
       var temp_list = SendList
       //console.log("====================")
       //console.log("Removing current user from send list...")
@@ -115,11 +116,11 @@ export default function Home() {
 
           <div>
             <div>
-            {!LoggedIn ?           
-                <div className="mt-[10%]">
+            {/* {!LoggedIn ?           
+                <div className="mt-[10%]"> */}
                   <LoginForm Data={Data} setData={setData} Submit={Submit} setSubmit={setSubmit} Login={Login} LoggedIn={LoggedIn} setLogin={setLogin} setLoggedIn={setLoggedIn} setUser={setUser} setSendList={setSendList}/>
-                </div>
-            : <div>
+                {/* </div> */}
+            <div>
                 <div>
                   <MessageForm User={User} SendList={SendList} setSendData={setSendData} ArrayCleaned={ArrayCleaned}/>
                 </div>
@@ -127,7 +128,7 @@ export default function Home() {
                   <Logout setData={setData} setSubmit={setSubmit} setLogin={setLogin} setLoggedIn={setLoggedIn} TriggerLogout={TriggerLogout} setTriggerLogout={setTriggerLogout}/>
                 </div>
               </div>
-            }
+            {/* } */}
             </div>
           </div>
 

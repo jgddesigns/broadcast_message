@@ -6,9 +6,9 @@ import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 
 
 export default function LoginForm(props: any) {
-  const [Email, setEmail] = useState("")
-  const [Password, setPassword] = useState("")
-  const [Login, setLogin] = useState(false)
+  const [Email, setEmail] = useState("test_user@acct.com")
+  const [Password, setPassword] = useState("testpw11!!")
+  const [Login, setLogin] = useState(true)
   const [UserData, setUserData] = useState([])
   const [ValidEmail, setValidEmail] = useState(false)
   const [ValidPassword, setValidPassword] = useState(false)
@@ -32,6 +32,11 @@ export default function LoginForm(props: any) {
 
 
   useEffect(() => {
+    submitHandler()
+  }, [])
+
+
+  useEffect(() => {
     togglePassIcon()
   }, [])
 
@@ -44,14 +49,14 @@ export default function LoginForm(props: any) {
 
 
   useEffect(() => {
-    if(Login){
+    if(UserData){
         //console.log("Login passed to login page.")
         //console.log(UserData)
         
         // Login ? props.setLoggedIn(Login) : //console.log("User login broken on LoginForm page.")
-        // UserData ? props.setUser(UserData) : //console.log("User data broken on LoginForm page.")
+        UserData ? props.setUser(UserData) : console.log("User data broken on LoginForm page.")
     }
-  }, [Login])
+  }, [UserData])
 
 
 
@@ -69,6 +74,7 @@ export default function LoginForm(props: any) {
 
 
   const validateEmail = (value: any, check = false) => {
+    return true
     const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,2}\.[0-9]{1,2}\.[0-9]{1,2}\.[0-9]{1,2}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     var email_str = "<div>Email is invalid.</div>"
 
@@ -104,6 +110,7 @@ export default function LoginForm(props: any) {
 
 
   const validatePassword = (value: any, check = false) => {
+    return true
     var format = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/
     var chars = 0
     var i = 1
@@ -186,8 +193,9 @@ export default function LoginForm(props: any) {
   }
 
 
-  const submitHandler = (e: any) => {
+  const submitHandler = () => {
     const TempData: string[] | null = [Email, Password]
+    console.log(TempData)
     props.setData(TempData)
     props.setSubmit(true)
   }
@@ -213,7 +221,7 @@ export default function LoginForm(props: any) {
 
   return (
     <div>
-        <div className="grid grid-rows-3 place-items-center text-2xl">
+        {/* <div className="grid grid-rows-3 place-items-center text-2xl">
           <div className="grid grid-rows-2 grid-cols-2">
               <span>
                   Email:
@@ -241,7 +249,7 @@ export default function LoginForm(props: any) {
                   Submit
               </button>
           </div>
-        </div>
+        </div> */}
      
         <ScanDB Submit={props.Submit} Data={props.Data} Login={props.Login} setLogin={setLogin} setUserData={setUserData} setSendList={props.setSendList} setValidationMessage={setValidationMessage}/>
     </div>

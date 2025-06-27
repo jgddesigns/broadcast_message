@@ -47,7 +47,7 @@ export default function ScanDB(props: any) {
   async function getDB(){
     try {
       //console.log('Received event:', JSON.stringify(event, null, 2));
-      
+      console.log("333")
       const params = {   
         TableName: 'broadcast',
         Item: {
@@ -57,8 +57,8 @@ export default function ScanDB(props: any) {
       };
     
       var response = await dynamo.scan(params).promise();
-      //console.log("db scanned")
-      //console.log(response["Items"])
+      console.log("db scanned")
+      console.log(response["Items"])
       var db_rows: any = []
       response["Items"] ? db_rows = response["Items"] : null
 
@@ -67,8 +67,8 @@ export default function ScanDB(props: any) {
       for (var i=0; i<db_rows.length; i++){
         if(db_rows[i]["email"].toLowerCase() == props.Data[0].toLowerCase() && db_rows[i]["password"] == props.Data[1]){
           props.setValidationMessage("")
-          //console.log("match found")
-          //console.log(db_rows[i])
+          console.log("match found")
+          console.log(db_rows[i])
           loginHandler(db_rows[i])
           i = db_rows.length
           user_found = true

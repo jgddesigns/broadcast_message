@@ -19,20 +19,20 @@ export default function LoginHeader(props: any) {
     return (
         <div>
             <div className="text-xl cursor-default">
-                {props.LoggedIn ? 
-                    <div className="grid grid-cols-2">
+                {/* {props.LoggedIn ?  */}
+                    <div className="grid grid-rows-2">
                         <div>
-                            Current User: {props.User["name"]} 
+                            Current User: {"test_user@acct.com"}
                         </div>
-                        <div>
-                            <button className="text-blue-400 cursor-pointer ml-[32px]" onClick={e => logoutHandler(e)}>Log Out</button>
+                        <div className="grid place-items-end">
+                            <button className="text-blue-400 cursor-pointer" onClick={e => logoutHandler(e)}>Log Out</button>
                         </div>
                     </div>
-                : 
-                    <div className="ml-72">
+                {/* :  */}
+                    {/* <div className="ml-72">
                         <span className="italic">Logged Out</span>
-                    </div>
-                }
+                    </div> */}
+                {/* } */}
             </div>
         </div> 
     );

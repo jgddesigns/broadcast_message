@@ -81,7 +81,8 @@ export default function MessageForm(props: any) {
               <span>
                   From:
               </span>
-              <textarea className="w-[300px] h-[50px] p-[10px] ml-16 resize-none bg-gray-300 rounded" value={props.User["email"]} disabled/>
+              {/* <textarea className="w-[300px] h-[50px] p-[10px] ml-16 resize-none bg-gray-300 rounded" value={props.User["email"]} disabled/> */}
+              <textarea className="w-[300px] h-[50px] p-[10px] ml-16 resize-none bg-gray-300 rounded" value="test_user@acct.com" disabled/>
           </div>
 
           <div className="grid grid-rows-1 grid-cols-3 mt-[50px] w-[800px]">
